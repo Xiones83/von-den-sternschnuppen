@@ -1175,8 +1175,8 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
   .nav-links .btn { margin-top: 0.5rem; }
   .nav-toggle { display: flex; z-index: 1001; }
   .form-grid { grid-template-columns: 1fr; }
-  .lightbox-prev { left: -2.5rem; }
-  .lightbox-next { right: -2.5rem; }
+  .lightbox-prev { left: 0.5rem; }
+  .lightbox-next { right: 0.5rem; }
   .chatbot-panel { width: calc(100vw - 2rem); right: 1rem; }
   .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
   .hero-actions { flex-direction: column; }
