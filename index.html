@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hundezwinger von den Sternschnuppen – Liebevolle Hundezucht mit Herz. Marie Christin Knorr. Aktuelle Würfe, Rasseinfo und Kontakt.">
+  <title>von den Sternschnuppen – Hundezwinger Marie Christin Knorr</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav class="nav" role="navigation" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-logo" aria-label="Zur Startseite">
+      <span class="nav-logo-icon">🌟</span>
+      <span>von den <span>Sternschnuppen</span></span>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#aktuell">Aktuell</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#rasse">Rasse</a></li>
+      <li><a href="#ablauf">Ablauf</a></li>
+      <li><a href="#kosten">Kosten</a></li>
+      <li><a href="#kontakt" class="btn btn-primary">Jetzt anfragen</a></li>
+    </ul>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section id="hero" class="hero" aria-label="Startbereich">
+  <div class="stars-bg" aria-hidden="true"></div>
+  <div class="container hero-content">
+    <div class="hero-badge">✨ Liebevolle Hundezucht</div>
+    <h1 class="hero-title">
+      Zwinger<br><span class="star-text">von den Sternschnuppen</span>
+    </h1>
+    <p class="hero-subtitle">
+      Züchterin Marie Christin Knorr – bei uns wachsen Welpen mit viel Liebe,
+      Fürsorge und einem guten Start ins Leben auf.
+    </p>
+    <div class="hero-actions">
+      <a href="#aktuell" class="btn btn-primary">Aktuelle Würfe entdecken</a>
+      <a href="#kontakt" class="btn btn-outline">Kontakt aufnehmen</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    </svg>
+    Entdecken
+  </div>
+</section>
+
+<!-- ============================================================
+     AKTUELL / NEUIGKEITEN
+     ============================================================ -->
+<section id="aktuell" class="section" aria-labelledby="aktuell-title">
+  <div class="container">
+    <h2 class="section-title" id="aktuell-title">Aktuelles & Neuigkeiten</h2>
+    <p class="section-subtitle">Immer aktuell informiert – hier teilen wir Neuigkeiten rund um unsere Würfe und den Zwinger.</p>
+    <div class="news-grid" id="news-grid">
+      <!-- Wird per JS befüllt -->
+      <div class="news-empty"><p>Einen Moment bitte…</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     GALERIE
+     ============================================================ -->
+<section id="galerie" class="section section-alt" aria-labelledby="galerie-title">
+  <div class="container">
+    <h2 class="section-title" id="galerie-title">Galerie</h2>
+    <p class="section-subtitle">Einblicke in unseren Zwinger und unsere Hunde.</p>
+    <div class="gallery-grid" id="gallery-grid">
+      <!-- Wird per JS befüllt -->
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto-Lightbox">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Schließen">✕</button>
+    <button class="lightbox-nav lightbox-prev" onclick="lightboxNav(-1)" aria-label="Vorheriges Bild">‹</button>
+    <img id="lightbox-img" src="" alt="">
+    <button class="lightbox-nav lightbox-next" onclick="lightboxNav(1)" aria-label="Nächstes Bild">›</button>
+    <p class="lightbox-caption" id="lightbox-caption"></p>
+  </div>
+</div>
+
+<!-- ============================================================
+     RASSEINFO
+     ============================================================ -->
+<section id="rasse" class="section" aria-labelledby="rasse-title">
+  <div class="container">
+    <h2 class="section-title" id="rasse-title">Unsere Rasse</h2>
+    <p class="section-subtitle">Charakter, Wesen und Haltungsanforderungen im Überblick.</p>
+    <div class="rasse-grid">
+      <div class="rasse-img-wrap">
+        <img src="https://placedog.net/700/520?r=7" alt="Unser Zuchthund" loading="lazy">
+      </div>
+      <div>
+        <div class="rasse-placeholder" style="margin-bottom:1.5rem">
+          <p>🐾 Die Rasseangabe folgt in Kürze. Wir züchten mit größter Sorgfalt und achten auf Gesundheit, Wesen und rassetypische Merkmale.</p>
+        </div>
+        <p style="color:var(--text-muted);margin-bottom:1.5rem">
+          Unsere Hunde werden in der Familie aufgezogen – sie sind von Welpenbeinen an gut sozialisiert
+          und lernen frühzeitig, mit Menschen und anderen Tieren umzugehen.
+          Wir legen großen Wert auf gesunde, wesensfeste Elterntiere.
+        </p>
+        <div class="rasse-traits">
+          <div class="trait-card">
+            <strong>Wesen</strong>
+            <span>Freundlich &amp; ausgeglichen</span>
+          </div>
+          <div class="trait-card">
+            <strong>Sozialverhalten</strong>
+            <span>Familienhund</span>
+          </div>
+          <div class="trait-card">
+            <strong>Aktivität</strong>
+            <span>Wird bekannt gegeben</span>
+          </div>
+          <div class="trait-card">
+            <strong>Pflege</strong>
+            <span>Wird bekannt gegeben</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     ABLAUF
+     ============================================================ -->
+<section id="ablauf" class="section section-alt" aria-labelledby="ablauf-title">
+  <div class="container">
+    <h2 class="section-title" id="ablauf-title">Ablauf & Bedingungen</h2>
+    <p class="section-subtitle">So läuft die Bewerbung und Abgabe bei uns ab – Schritt für Schritt.</p>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot">📝</div>
+        <div class="timeline-body">
+          <h3>1. Anfrage &amp; Fragebogen</h3>
+          <p>Füllen Sie unser Kontaktformular mit dem Fragebogen aus. So können wir uns schon vorab ein erstes Bild machen und prüfen, ob ein Welpe aus unserem Zwinger zu Ihnen passt.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">💬</div>
+        <div class="timeline-body">
+          <h3>2. Persönliches Gespräch</h3>
+          <p>Wir nehmen Kontakt mit Ihnen auf und führen ein ausführliches Gespräch – per Telefon oder persönlich. Gegenseitiges Kennenlernen ist uns sehr wichtig.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">🏡</div>
+        <div class="timeline-body">
+          <h3>3. Besuch beim Zwinger</h3>
+          <p>Sie besuchen uns und lernen die Welpen sowie Elterntiere persönlich kennen. So können Sie sicher sein, dass alles passt.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">🤝</div>
+        <div class="timeline-body">
+          <h3>4. Reservierung</h3>
+          <p>Wenn wir gemeinsam entscheiden, dass es passt, erfolgt die Reservierung Ihres Wunschwelpen gegen eine Schutzgebühr.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot">🐾</div>
+        <div class="timeline-body">
+          <h3>5. Abholung</h3>
+          <p>Mit 8–10 Wochen zieht Ihr Welpe vollständig geimpft, entwurmt und mit EU-Heimtierausweis zu Ihnen ein. Wir stehen auch danach für Fragen bereit.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     BEDINGUNGEN
+     ============================================================ -->
+<section id="bedingungen" class="section" aria-labelledby="bedingungen-title">
+  <div class="container">
+    <h2 class="section-title" id="bedingungen-title">Anforderungen an Käufer</h2>
+    <p class="section-subtitle">Uns ist es wichtig, dass unsere Welpen in die richtigen Hände kommen.</p>
+    <div class="bedingungen-grid">
+
+      <div class="bedingung-card">
+        <div class="bedingung-icon">🏠</div>
+        <h3>Geeignete Wohnsituation</h3>
+        <p>Ausreichend Platz und idealerweise Zugang zu einem Garten oder Grünflächen für artgerechte Bewegung.</p>
+      </div>
+
+      <div class="bedingung-card">
+        <div class="bedingung-icon">⏰</div>
+        <h3>Genug Zeit</h3>
+        <p>Ein Hund braucht täglich ausreichend Zeit, Beschäftigung und soziale Interaktion – nicht zu viele Stunden allein.</p>
+      </div>
+
+      <div class="bedingung-card">
+        <div class="bedingung-icon">💛</div>
+        <h3>Verantwortungsbewusstsein</h3>
+        <p>Tierarztbesuche, Erziehung und ein Leben lang Fürsorge – ein Hund ist eine langjährige Verpflichtung.</p>
+      </div>
+
+      <div class="bedingung-card">
+        <div class="bedingung-icon">🔍</div>
+        <h3>Besuchsrecht</h3>
+        <p>Wir behalten uns vor, unsere Welpen in ihrem neuen Zuhause zu besuchen, um ihr Wohlbefinden zu überprüfen.</p>
+      </div>
+
+      <div class="bedingung-card">
+        <div class="bedingung-icon">📋</div>
+        <h3>Kaufvertrag</h3>
+        <p>Mit jedem Welpen wird ein Kaufvertrag abgeschlossen, der die Bedingungen beider Seiten klar regelt.</p>
+      </div>
+
+      <div class="bedingung-card">
+        <div class="bedingung-icon">🐶</div>
+        <h3>Rassegeeignete Haltung</h3>
+        <p>Erfahrung mit Hunden ist von Vorteil. Anfänger werden von uns ausführlich beraten und begleitet.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     KOSTEN
+     ============================================================ -->
+<section id="kosten" class="section section-alt" aria-labelledby="kosten-title">
+  <div class="container">
+    <h2 class="section-title" id="kosten-title">Kosten</h2>
+    <p class="section-subtitle">Transparente Preisgestaltung – keine versteckten Kosten.</p>
+    <div class="kosten-grid">
+
+      <div class="kosten-card featured">
+        <span class="kosten-badge">🌟 Welpenpreis</span>
+        <div class="kosten-preis">auf Anfrage<small></small></div>
+        <p>Der Preis wird zeitnah bekanntgegeben und richtet sich nach Geschlecht und Verfügbarkeit.</p>
+        <ul class="kosten-list">
+          <li>Erstimpfung nach Impfplan</li>
+          <li>Mehrfache Entwurmung</li>
+          <li>EU-Heimtierausweis + Chip</li>
+          <li>Tierärztliches Gesundheitszeugnis</li>
+          <li>Welpenfutter für die ersten Tage</li>
+          <li>Beratung &amp; Nachbetreuung</li>
+        </ul>
+        <a href="#kontakt" class="btn btn-primary" style="width:100%;text-align:center">Jetzt anfragen</a>
+      </div>
+
+    </div>
+    <p style="text-align:center;color:var(--text-muted);margin-top:1.5rem;font-size:0.9rem">
+      Eine Schutzgebühr zur Reservierung wird bei Abholung angerechnet.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     KONTAKT & FRAGEBOGEN
+     ============================================================ -->
+<section id="kontakt" class="section" aria-labelledby="kontakt-title">
+  <div class="container">
+    <h2 class="section-title" id="kontakt-title">Kontakt &amp; Anfrage</h2>
+    <p class="section-subtitle">Interessiert? Füllen Sie das Formular aus – wir melden uns persönlich bei Ihnen.</p>
+    <div class="kontakt-grid">
+
+      <!-- Kontaktinfo -->
+      <aside class="kontakt-info">
+        <h3>So erreichen Sie uns</h3>
+        <p>Wir freuen uns über Ihre Anfrage und melden uns in der Regel innerhalb von 1–2 Werktagen.</p>
+        <div class="kontakt-detail">
+          <div class="kontakt-detail-icon">✉️</div>
+          <div class="kontakt-detail-text">
+            <strong>E-Mail</strong>
+            <span><a href="mailto:knorr.marie94@gmail.com">knorr.marie94@gmail.com</a></span>
+          </div>
+        </div>
+        <div class="kontakt-detail">
+          <div class="kontakt-detail-icon">🏅</div>
+          <div class="kontakt-detail-text">
+            <strong>Zwingername</strong>
+            <span>von den Sternschnuppen</span>
+          </div>
+        </div>
+        <div class="kontakt-detail">
+          <div class="kontakt-detail-icon">📋</div>
+          <div class="kontakt-detail-text">
+            <strong>Züchterin</strong>
+            <span>Marie Christin Knorr</span>
+          </div>
+        </div>
+        <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--text-muted)">
+          💡 <strong>Tipp:</strong> Je mehr Sie im Fragebogen angeben, desto schneller können wir Ihre Anfrage bearbeiten.
+        </p>
+      </aside>
+
+      <!-- Formular -->
+      <div class="form-card">
+        <h3>Anfrage &amp; Fragebogen</h3>
+        <p>Pflichtfelder sind mit <span style="color:#e74c3c">*</span> markiert.</p>
+
+        <!-- Formspree: Ersetze YOUR_FORM_ID mit deiner Formspree-ID -->
+        <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+
+          <!-- Persönliche Daten -->
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Vor- &amp; Nachname <span class="required">*</span></label>
+              <input type="text" id="name" name="name" required placeholder="Max Mustermann" autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="email">E-Mail-Adresse <span class="required">*</span></label>
+              <input type="email" id="email" name="email" required placeholder="max@beispiel.de" autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefonnummer</label>
+              <input type="tel" id="phone" name="phone" placeholder="+49 123 456789" autocomplete="tel">
+            </div>
+            <div class="form-group">
+              <label for="ort">Wohnort</label>
+              <input type="text" id="ort" name="ort" placeholder="Stadt / Region">
+            </div>
+          </div>
+
+          <hr class="form-divider">
+          <div class="form-section-title">🐾 Fragebogen <span class="tag">Wichtig</span></div>
+          <p class="form-section-desc">Bitte beantworten Sie die folgenden Fragen ehrlich – sie helfen uns, das richtige Match zu finden.</p>
+
+          <div class="form-grid">
+
+            <div class="form-group full">
+              <label>Ihre Erfahrung mit Hunden <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" name="erfahrung" id="erf0" value="Keine Erfahrung" required>
+                  <label for="erf0">Keine Erfahrung</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" name="erfahrung" id="erf1" value="Etwas Erfahrung (früherer Hund / Familienhund)">
+                  <label for="erf1">Etwas Erfahrung</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" name="erfahrung" id="erf2" value="Viel Erfahrung (eigene Hunde)">
+                  <label for="erf2">Viel Erfahrung</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group full">
+              <label>Wohnsituation <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" name="wohnsituation" id="wohn0" value="Haus mit Garten" required>
+                  <label for="wohn0">Haus mit Garten</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" name="wohnsituation" id="wohn1" value="Wohnung mit Garten/Balkon">
+                  <label for="wohn1">Wohnung mit Garten/Balkon</label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" name="wohnsituation" id="wohn2" value="Wohnung ohne Garten">
+                  <label for="wohn2">Wohnung ohne Garten</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="kinder">Kinder im Haushalt?</label>
+              <select id="kinder" name="kinder">
+                <option value="">Bitte wählen…</option>
+                <option value="Keine Kinder">Keine Kinder</option>
+                <option value="Kinder unter 5 Jahren">Kinder unter 5 Jahren</option>
+                <option value="Kinder 5–12 Jahre">Kinder 5–12 Jahre</option>
+                <option value="Jugendliche über 12 Jahre">Jugendliche über 12 Jahre</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="allein">Stunden täglich allein?</label>
+              <select id="allein" name="stunden_allein">
+                <option value="">Bitte wählen…</option>
+                <option value="0–2 Stunden täglich">0–2 Stunden</option>
+                <option value="2–4 Stunden täglich">2–4 Stunden</option>
+                <option value="4–6 Stunden täglich">4–6 Stunden</option>
+                <option value="Über 6 Stunden täglich">Über 6 Stunden</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="weitere_tiere">Weitere Haustiere?</label>
+              <input type="text" id="weitere_tiere" name="weitere_tiere" placeholder="z.B. Katze, anderer Hund, …">
+            </div>
+
+            <div class="form-group full">
+              <label for="grund">Warum möchten Sie einen Hund dieser Zucht? <span class="required">*</span></label>
+              <textarea id="grund" name="warum_hund" required placeholder="Erzählen Sie uns ein bisschen über sich und Ihre Motivation…" rows="4"></textarea>
+            </div>
+
+            <div class="form-group full">
+              <label for="wunsch">Haben Sie einen bestimmten Wunschkandidaten oder Vorstellungen?</label>
+              <textarea id="wunsch" name="wunschvorstellung" placeholder="z.B. Geschlecht, Farbe, …" rows="2"></textarea>
+            </div>
+
+          </div>
+
+          <div class="checkbox-wrap" style="margin-top:1.25rem">
+            <input type="checkbox" id="besuchsrecht" name="besuchsrecht" value="Ja, ich bin damit einverstanden" required>
+            <label for="besuchsrecht">
+              <strong>Ich bin damit einverstanden,</strong> dass die Züchterin nach der Abgabe Besuche durchführen darf,
+              um das Wohlbefinden des Welpen zu überprüfen. <span class="required">*</span>
+            </label>
+          </div>
+
+          <div class="checkbox-wrap" style="margin-top:0.75rem">
+            <input type="checkbox" id="datenschutz" name="datenschutz" value="Ja" required>
+            <label for="datenschutz">
+              Ich habe die Informationen zur Seite gelesen und bin mit der Verarbeitung meiner Daten zur Beantwortung meiner Anfrage einverstanden. <span class="required">*</span>
+            </label>
+          </div>
+
+          <div class="form-submit">
+            <small>Wir antworten in der Regel innerhalb von 1–2 Werktagen.</small>
+            <button type="submit" class="btn btn-primary">Anfrage absenden ✉️</button>
+          </div>
+
+        </form>
+
+        <div class="form-success" id="form-success">
+          <div style="font-size:2.5rem;margin-bottom:0.75rem">🎉</div>
+          <h4>Vielen Dank für Ihre Anfrage!</h4>
+          <p>Wir haben Ihre Nachricht erhalten und melden uns so schnell wie möglich bei Ihnen. Bis bald!</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">🌟 von den <span>Sternschnuppen</span></div>
+        <p>Liebevolle Hundezucht mit Herz.<br>Marie Christin Knorr</p>
+      </div>
+      <div>
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+          <li><a href="#aktuell">Aktuell</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#rasse">Rasseinfo</a></li>
+          <li><a href="#ablauf">Ablauf &amp; Bedingungen</a></li>
+          <li><a href="#kosten">Kosten</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-heading">Kontakt</div>
+        <ul class="footer-links">
+          <li><a href="mailto:knorr.marie94@gmail.com">knorr.marie94@gmail.com</a></li>
+          <li><a href="/admin/" style="opacity:0.4;font-size:0.8rem">Admin</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Zwinger von den Sternschnuppen – Marie Christin Knorr</span>
+      <span>Mit ❤️ gemacht</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     FAQ CHATBOT
+     ============================================================ -->
+<div id="chatbot-panel" class="chatbot-panel" role="dialog" aria-label="FAQ Assistent" aria-modal="false">
+  <div class="chatbot-header">
+    <div class="chatbot-avatar" aria-hidden="true">🐾</div>
+    <div class="chatbot-header-text">
+      <strong>FAQ Assistent</strong>
+      <small>Fragen rund um den Zwinger</small>
+    </div>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages" aria-live="polite" aria-atomic="false"></div>
+  <div class="chatbot-suggestions">
+    <button class="suggestion-chip">Was kostet ein Welpe?</button>
+    <button class="suggestion-chip">Wie läuft die Reservierung ab?</button>
+    <button class="suggestion-chip">Kann ich besuchen?</button>
+    <button class="suggestion-chip">Was ist inklusive?</button>
+  </div>
+  <div class="chatbot-input-wrap">
+    <input type="text" id="chatbot-input" class="chatbot-input" placeholder="Ihre Frage…" aria-label="Frage eingeben">
+    <button id="chatbot-send" class="chatbot-send" aria-label="Senden">➤</button>
+  </div>
+</div>
+
+<button id="chatbot-toggle" class="chatbot-toggle" aria-label="FAQ Chat öffnen">
+  <span class="chat-icon" aria-hidden="true">💬</span>
+  <span class="close-icon" aria-hidden="true">✕</span>
+</button>
+
+<script src="js/app.js"></script>
+<script src="js/chatbot.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "src": "https://placedog.net/800/600?r=10",
+    "thumb": "https://placedog.net/400/300?r=10",
+    "title": "Unsere Hunde",
+    "category": "zucht"
+  },
+  {
+    "id": 2,
+    "src": "https://placedog.net/800/600?r=20",
+    "thumb": "https://placedog.net/400/300?r=20",
+    "title": "Welpen",
+    "category": "welpen"
+  },
+  {
+    "id": 3,
+    "src": "https://placedog.net/800/600?r=30",
+    "thumb": "https://placedog.net/400/300?r=30",
+    "title": "Spielzeit",
+    "category": "welpen"
+  },
+  {
+    "id": 4,
+    "src": "https://placedog.net/800/600?r=40",
+    "thumb": "https://placedog.net/400/300?r=40",
+    "title": "Familienmitglieder",
+    "category": "zucht"
+  },
+  {
+    "id": 5,
+    "src": "https://placedog.net/800/600?r=50",
+    "thumb": "https://placedog.net/400/300?r=50",
+    "title": "Neugeborene Welpen",
+    "category": "welpen"
+  },
+  {
+    "id": 6,
+    "src": "https://placedog.net/800/600?r=60",
+    "thumb": "https://placedog.net/400/300?r=60",
+    "title": "Im Zwinger",
+    "category": "zwinger"
+  }
+]

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – von den Sternschnuppen</title>
+  <style>
+    :root {
+      --midnight: #0d1b2a;
+      --gold: #f5c518;
+      --gold-dark: #d4a017;
+      --cream: #fdf8ee;
+      --warm: #f5ede0;
+      --text: #2c2c2c;
+      --text-muted: #777;
+      --border: #e8e0d0;
+      --white: #fff;
+      --red: #e74c3c;
+      --green: #27ae60;
+      --shadow: 0 4px 20px rgba(0,0,0,0.1);
+      --radius: 10px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
+
+    /* Login */
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--midnight);
+    }
+    .login-box {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+    }
+    .login-logo { font-size: 2rem; margin-bottom: 0.5rem; }
+    .login-box h1 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+    .login-box p { color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.75rem; }
+    .login-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+    .login-box input:focus { outline: none; border-color: var(--gold); }
+    .login-box button {
+      width: 100%;
+      padding: 0.85rem;
+      background: var(--gold);
+      color: var(--midnight);
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .login-box button:hover { background: var(--gold-dark); }
+    .login-error { color: var(--red); font-size: 0.85rem; margin-top: 0.75rem; display: none; }
+
+    /* Admin Layout */
+    .admin-screen { display: none; }
+    .admin-header {
+      background: var(--midnight);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .admin-header h1 { font-size: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    .admin-header h1 span { color: var(--gold); }
+    .admin-header-actions { display: flex; gap: 0.75rem; align-items: center; }
+    .btn-sm {
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.2s;
+    }
+    .btn-sm:hover { opacity: 0.85; }
+    .btn-gold { background: var(--gold); color: var(--midnight); }
+    .btn-outline-white { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: white; }
+    .btn-red { background: var(--red); color: white; }
+    .btn-green { background: var(--green); color: white; }
+    .btn-gray { background: #aaa; color: white; }
+    .admin-main { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-tabs { display: flex; gap: 0.5rem; margin-bottom: 2rem; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+    .tab-btn {
+      padding: 0.6rem 1.25rem;
+      border: none;
+      background: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn.active { color: var(--midnight); border-bottom-color: var(--gold); }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    /* Cards / Panels */
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 1.5rem;
+    }
+    .card h3 { margin-bottom: 1rem; font-size: 1.05rem; }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 0.35rem; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus { outline: none; border-color: var(--gold); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    /* Galerie Items */
+    .items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .item-card {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--white);
+      position: relative;
+    }
+    .item-card-img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      background: var(--warm);
+    }
+    .item-card-body { padding: 0.75rem; }
+    .item-card-title { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .item-card-actions { display: flex; gap: 0.4rem; }
+
+    /* News Items */
+    .news-item {
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    .news-item-header {
+      padding: 1rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--warm);
+      cursor: pointer;
+      gap: 1rem;
+    }
+    .news-item-header h4 { font-size: 0.95rem; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .news-item-header .date { font-size: 0.8rem; color: var(--text-muted); flex-shrink: 0; }
+    .news-item-header .actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
+    .news-item-body { padding: 1rem 1.25rem; display: none; border-top: 1.5px solid var(--border); }
+    .news-item.expanded .news-item-body { display: block; }
+    .news-item-preview { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* Toast */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--midnight);
+      color: white;
+      padding: 0.85rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      box-shadow: var(--shadow);
+      z-index: 9999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: transform 0.3s, opacity 0.3s;
+      border-left: 3px solid var(--gold);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* Hinweisbox */
+    .info-box {
+      background: rgba(245,197,24,0.1);
+      border: 1.5px solid rgba(245,197,24,0.3);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      margin-bottom: 1.5rem;
+      color: #7a5c00;
+    }
+    .info-box strong { display: block; margin-bottom: 0.25rem; }
+
+    /* Passwort-Änderung */
+    .pw-form { max-width: 360px; }
+
+    @media(max-width:600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .items-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+      .admin-header { padding: 0.75rem 1rem; }
+      .admin-main { padding: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div class="login-screen" id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">🌟</div>
+    <h1>Admin-Bereich</h1>
+    <p>von den Sternschnuppen</p>
+    <input type="password" id="pw-input" placeholder="Passwort eingeben" autocomplete="current-password">
+    <button onclick="doLogin()">Anmelden</button>
+    <div class="login-error" id="login-error">Falsches Passwort. Bitte erneut versuchen.</div>
+  </div>
+</div>
+
+<!-- ADMIN -->
+<div class="admin-screen" id="admin-screen">
+  <header class="admin-header">
+    <h1>🌟 Admin – von den <span>Sternschnuppen</span></h1>
+    <div class="admin-header-actions">
+      <a href="/" target="_blank" class="btn-sm btn-outline-white">Website ansehen →</a>
+      <button class="btn-sm btn-outline-white" onclick="doLogout()">Abmelden</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="info-box">
+      <strong>💡 So funktioniert die Verwaltung</strong>
+      Änderungen werden im Browser gespeichert (localStorage) und sofort auf dieser Website angezeigt –
+      solange Sie denselben Browser nutzen. Für eine permanente Veröffentlichung (auch auf anderen Geräten)
+      exportieren Sie die Daten und laden die JSON-Dateien im GitHub-Repo hoch.
+    </div>
+
+    <div class="admin-tabs">
+      <button class="tab-btn active" onclick="switchTab('news')">📰 Neuigkeiten</button>
+      <button class="tab-btn" onclick="switchTab('gallery')">🖼️ Galerie</button>
+      <button class="tab-btn" onclick="switchTab('settings')">⚙️ Einstellungen</button>
+    </div>
+
+    <!-- TAB: NEUIGKEITEN -->
+    <div class="tab-panel active" id="tab-news">
+
+      <div class="card">
+        <h3 id="news-form-title">Neuen Beitrag erstellen</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Titel *</label>
+            <input type="text" id="n-title" placeholder="z.B. Neuer Wurf geplant!">
+          </div>
+          <div class="form-group">
+            <label>Datum</label>
+            <input type="date" id="n-date">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Bild-URL (optional)</label>
+          <input type="url" id="n-image" placeholder="https://…">
+        </div>
+        <div class="form-group">
+          <label>Text *</label>
+          <textarea id="n-text" placeholder="Beschreibung des Beitrags…" rows="4"></textarea>
+        </div>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+          <button class="btn-sm btn-gold" onclick="saveNews()">💾 Beitrag speichern</button>
+          <button class="btn-sm btn-gray" onclick="resetNewsForm()" id="news-cancel-btn" style="display:none">Abbrechen</button>
+        </div>
+        <input type="hidden" id="n-edit-id" value="">
+      </div>
+
+      <div id="news-list"><!-- JS --></div>
+    </div>
+
+    <!-- TAB: GALERIE -->
+    <div class="tab-panel" id="tab-gallery">
+
+      <div class="card">
+        <h3>Foto hinzufügen</h3>
+        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:1rem">
+          Laden Sie Fotos z.B. bei <strong>Cloudinary</strong>, <strong>imgbb.com</strong> oder <strong>Google Photos</strong> hoch
+          und fügen Sie die URL hier ein.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Bild-URL (groß) *</label>
+            <input type="url" id="g-src" placeholder="https://…/bild.jpg">
+          </div>
+          <div class="form-group">
+            <label>Vorschau-URL (optional)</label>
+            <input type="url" id="g-thumb" placeholder="Leer lassen = gleiche URL">
+          </div>
+        </div>
+        <div class="form-group" style="max-width:300px">
+          <label>Bildunterschrift</label>
+          <input type="text" id="g-title" placeholder="Optionaler Titel">
+        </div>
+        <button class="btn-sm btn-gold" onclick="addGalleryItem()">➕ Zur Galerie hinzufügen</button>
+      </div>
+
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem">
+          <h3 style="margin:0">Aktuelle Galerie</h3>
+          <button class="btn-sm btn-green" onclick="exportGallery()">📥 JSON exportieren</button>
+        </div>
+        <div class="items-grid" id="gallery-list"><!-- JS --></div>
+      </div>
+    </div>
+
+    <!-- TAB: EINSTELLUNGEN -->
+    <div class="tab-panel" id="tab-settings">
+      <div class="card pw-form">
+        <h3>Passwort ändern</h3>
+        <div class="form-group">
+          <label>Aktuelles Passwort</label>
+          <input type="password" id="pw-old" placeholder="Aktuelles Passwort">
+        </div>
+        <div class="form-group">
+          <label>Neues Passwort</label>
+          <input type="password" id="pw-new1" placeholder="Neues Passwort">
+        </div>
+        <div class="form-group">
+          <label>Neues Passwort wiederholen</label>
+          <input type="password" id="pw-new2" placeholder="Wiederholen">
+        </div>
+        <button class="btn-sm btn-gold" onclick="changePassword()">Passwort speichern</button>
+      </div>
+
+      <div class="card">
+        <h3>Daten zurücksetzen</h3>
+        <p style="color:var(--text-muted);font-size:0.875rem;margin-bottom:1rem">Setzt Galerie und Neuigkeiten auf die Standard-Platzhalterdaten zurück.</p>
+        <button class="btn-sm btn-red" onclick="resetAll()">Alle Daten zurücksetzen</button>
+      </div>
+
+      <div class="card">
+        <h3>Daten exportieren</h3>
+        <p style="color:var(--text-muted);font-size:0.875rem;margin-bottom:1rem">
+          Exportieren Sie Ihre Daten als JSON und laden Sie diese in das GitHub-Repository hoch,
+          damit Änderungen auf allen Geräten und für alle Besucher sichtbar sind.
+        </p>
+        <div style="display:flex;gap:0.75rem;flex-wrap:wrap">
+          <button class="btn-sm btn-green" onclick="exportGallery()">📥 gallery.json</button>
+          <button class="btn-sm btn-green" onclick="exportNews()">📥 news.json</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const PASS_KEY = 'sternschnuppen_admin_pw';
+const DEFAULT_PASS = 'Sternschnuppen2026';
+
+function getPassword() {
+  return localStorage.getItem(PASS_KEY) || DEFAULT_PASS;
+}
+
+function doLogin() {
+  const val = document.getElementById('pw-input').value;
+  if (val === getPassword()) {
+    sessionStorage.setItem('admin_auth', '1');
+    document.getElementById('login-screen').style.display = 'none';
+    document.getElementById('admin-screen').style.display = 'block';
+    loadAdminData();
+  } else {
+    document.getElementById('login-error').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+function doLogout() {
+  sessionStorage.removeItem('admin_auth');
+  location.reload();
+}
+
+document.getElementById('pw-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+
+if (sessionStorage.getItem('admin_auth') === '1') {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('admin-screen').style.display = 'block';
+  loadAdminData();
+}
+
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach((b,i) => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  const panels = { news: 0, gallery: 1, settings: 2 };
+  const tabs = document.querySelectorAll('.tab-btn');
+  tabs[panels[name]].classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+/* ---- NEWS ---- */
+function loadAdminData() {
+  renderNewsList();
+  renderGalleryList();
+  document.getElementById('n-date').value = new Date().toISOString().slice(0,10);
+}
+
+function getNews() {
+  const s = localStorage.getItem('sternschnuppen_news');
+  if (s) try { return JSON.parse(s); } catch(e) {}
+  return [];
+}
+function saveNewsList(arr) { localStorage.setItem('sternschnuppen_news', JSON.stringify(arr)); }
+
+function saveNews() {
+  const title = document.getElementById('n-title').value.trim();
+  const text  = document.getElementById('n-text').value.trim();
+  const date  = document.getElementById('n-date').value || new Date().toISOString().slice(0,10);
+  const image = document.getElementById('n-image').value.trim();
+  const editId = document.getElementById('n-edit-id').value;
+
+  if (!title || !text) { showToast('Bitte Titel und Text ausfüllen.'); return; }
+
+  let news = getNews();
+  if (editId) {
+    const idx = news.findIndex(n => String(n.id) === editId);
+    if (idx !== -1) news[idx] = { ...news[idx], title, text, date, image };
+  } else {
+    const id = Date.now();
+    news.push({ id, title, text, date, image, inGallery: false });
+  }
+
+  saveNewsList(news);
+  resetNewsForm();
+  renderNewsList();
+  showToast('Beitrag gespeichert!');
+}
+
+function resetNewsForm() {
+  document.getElementById('n-title').value = '';
+  document.getElementById('n-text').value = '';
+  document.getElementById('n-image').value = '';
+  document.getElementById('n-date').value = new Date().toISOString().slice(0,10);
+  document.getElementById('n-edit-id').value = '';
+  document.getElementById('news-form-title').textContent = 'Neuen Beitrag erstellen';
+  document.getElementById('news-cancel-btn').style.display = 'none';
+}
+
+function editNews(id) {
+  const news = getNews();
+  const item = news.find(n => String(n.id) === String(id));
+  if (!item) return;
+  document.getElementById('n-title').value = item.title || '';
+  document.getElementById('n-text').value = item.text || '';
+  document.getElementById('n-image').value = item.image || '';
+  document.getElementById('n-date').value = item.date || '';
+  document.getElementById('n-edit-id').value = id;
+  document.getElementById('news-form-title').textContent = 'Beitrag bearbeiten';
+  document.getElementById('news-cancel-btn').style.display = 'inline-block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function deleteNews(id) {
+  if (!confirm('Beitrag wirklich löschen?')) return;
+  const news = getNews().filter(n => String(n.id) !== String(id));
+  saveNewsList(news);
+  renderNewsList();
+  showToast('Beitrag gelöscht.');
+}
+
+function moveNewsToGallery(id) {
+  const news = getNews();
+  const item = news.find(n => String(n.id) === String(id));
+  if (!item || !item.image) { showToast('Dieser Beitrag hat kein Bild.'); return; }
+
+  // In Galerie eintragen
+  const gallery = getGallery();
+  const already = gallery.some(g => g.src === item.image);
+  if (already) { showToast('Bild ist bereits in der Galerie.'); return; }
+  gallery.push({ id: Date.now(), src: item.image, thumb: item.image, title: item.title, category: 'welpen' });
+  saveGalleryList(gallery);
+
+  // News-Item als "in Galerie" markieren
+  item.inGallery = true;
+  saveNewsList(news);
+
+  renderNewsList();
+  renderGalleryList();
+  showToast('✅ Bild wurde in die Galerie verschoben!');
+}
+
+function renderNewsList() {
+  const news = getNews();
+  const container = document.getElementById('news-list');
+  if (!news.length) {
+    container.innerHTML = '<p style="color:var(--text-muted);text-align:center;padding:2rem">Noch keine Beiträge. Erstelle deinen ersten Beitrag oben.</p>';
+    return;
+  }
+  container.innerHTML = news.slice().reverse().map(item => `
+    <div class="news-item">
+      <div class="news-item-header" onclick="toggleNewsItem(this)">
+        <h4>${escHtml(item.title)}</h4>
+        <span class="date">${formatDate(item.date)}</span>
+        <div class="actions" onclick="event.stopPropagation()">
+          ${item.image && !item.inGallery ? `<button class="btn-sm btn-green" onclick="moveNewsToGallery(${item.id})">→ Galerie</button>` : ''}
+          ${item.inGallery ? `<span style="font-size:0.75rem;color:var(--text-muted)">✓ In Galerie</span>` : ''}
+          <button class="btn-sm btn-gold" onclick="editNews(${item.id})">Bearbeiten</button>
+          <button class="btn-sm btn-red" onclick="deleteNews(${item.id})">Löschen</button>
+        </div>
+      </div>
+      <div class="news-item-body">
+        ${item.image ? `<img src="${escHtml(item.image)}" style="max-width:200px;border-radius:8px;margin-bottom:0.75rem;display:block" alt="">` : ''}
+        <p class="news-item-preview">${escHtml(item.text)}</p>
+      </div>
+    </div>`).join('');
+}
+
+function toggleNewsItem(header) {
+  header.closest('.news-item').classList.toggle('expanded');
+}
+
+/* ---- GALERIE ---- */
+function getGallery() {
+  const s = localStorage.getItem('sternschnuppen_gallery');
+  if (s) try { return JSON.parse(s); } catch(e) {}
+  return [];
+}
+function saveGalleryList(arr) { localStorage.setItem('sternschnuppen_gallery', JSON.stringify(arr)); }
+
+function addGalleryItem() {
+  const src   = document.getElementById('g-src').value.trim();
+  const thumb = document.getElementById('g-thumb').value.trim() || src;
+  const title = document.getElementById('g-title').value.trim();
+
+  if (!src) { showToast('Bitte eine Bild-URL eingeben.'); return; }
+
+  const gallery = getGallery();
+  gallery.push({ id: Date.now(), src, thumb, title, category: 'galerie' });
+  saveGalleryList(gallery);
+  document.getElementById('g-src').value = '';
+  document.getElementById('g-thumb').value = '';
+  document.getElementById('g-title').value = '';
+  renderGalleryList();
+  showToast('Foto hinzugefügt!');
+}
+
+function deleteGalleryItem(id) {
+  if (!confirm('Foto wirklich aus der Galerie entfernen?')) return;
+  const gallery = getGallery().filter(g => String(g.id) !== String(id));
+  saveGalleryList(gallery);
+  renderGalleryList();
+  showToast('Foto entfernt.');
+}
+
+function renderGalleryList() {
+  const gallery = getGallery();
+  const container = document.getElementById('gallery-list');
+  if (!gallery.length) {
+    container.innerHTML = '<p style="color:var(--text-muted);padding:1rem;grid-column:1/-1">Noch keine Fotos. Füge dein erstes Foto oben hinzu.</p>';
+    return;
+  }
+  container.innerHTML = gallery.map(item => `
+    <div class="item-card">
+      <img class="item-card-img" src="${escHtml(item.thumb || item.src)}" alt="${escHtml(item.title || '')}" loading="lazy"
+           onerror="this.style.background='var(--warm)';this.style.padding='2rem';this.alt='Bild nicht ladbar'">
+      <div class="item-card-body">
+        <div class="item-card-title">${escHtml(item.title || 'Kein Titel')}</div>
+        <div class="item-card-actions">
+          <button class="btn-sm btn-red" onclick="deleteGalleryItem(${item.id})">Entfernen</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+/* ---- EXPORT ---- */
+function exportGallery() {
+  const data = JSON.stringify(getGallery(), null, 2);
+  downloadJson(data, 'gallery.json');
+}
+function exportNews() {
+  const data = JSON.stringify(getNews(), null, 2);
+  downloadJson(data, 'news.json');
+}
+function downloadJson(content, filename) {
+  const a = document.createElement('a');
+  a.href = 'data:application/json;charset=utf-8,' + encodeURIComponent(content);
+  a.download = filename;
+  a.click();
+  showToast(`${filename} wird heruntergeladen.`);
+}
+
+/* ---- PASSWORT ---- */
+function changePassword() {
+  const old  = document.getElementById('pw-old').value;
+  const new1 = document.getElementById('pw-new1').value;
+  const new2 = document.getElementById('pw-new2').value;
+
+  if (old !== getPassword()) { showToast('Aktuelles Passwort falsch.'); return; }
+  if (!new1 || new1.length < 6) { showToast('Neues Passwort zu kurz (min. 6 Zeichen).'); return; }
+  if (new1 !== new2) { showToast('Passwörter stimmen nicht überein.'); return; }
+
+  localStorage.setItem(PASS_KEY, new1);
+  document.getElementById('pw-old').value = '';
+  document.getElementById('pw-new1').value = '';
+  document.getElementById('pw-new2').value = '';
+  showToast('✅ Passwort geändert!');
+}
+
+function resetAll() {
+  if (!confirm('Alle lokal gespeicherten Daten wirklich zurücksetzen? Die Standard-Platzhalterdaten werden wiederhergestellt.')) return;
+  localStorage.removeItem('sternschnuppen_gallery');
+  localStorage.removeItem('sternschnuppen_news');
+  loadAdminData();
+  showToast('Daten zurückgesetzt.');
+}
+
+/* ---- UTILS ---- */
+function escHtml(str) {
+  return String(str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function formatDate(d) {
+  if (!d) return '';
+  try { return new Date(d).toLocaleDateString('de-DE', { day:'2-digit', month:'short', year:'numeric' }); }
+  catch(e) { return d; }
+}
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3500);
+}
+</script>
+</body>
+</html>
