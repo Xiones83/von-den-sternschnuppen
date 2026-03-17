@@ -41,9 +41,9 @@
         "hooks": [
           {
             "type": "command",
-            "command": "cd \"E:/Claude Code/WebMarie\" && git status --porcelain | grep -q . && git add -A && git commit -m \"Auto-commit: $(date +%F_%T)\" || true",
-            "timeout": 30,
-            "statusMessage": "Auto-commit..."
+            "command": "cd \"E:/Claude Code/WebMarie\" && git status --porcelain | grep -q . && git add -A && git commit -m \"Auto-commit: $(date +%F_%T)\" && git push && npx netlify-cli deploy --dir=. --prod --site=546555a2-27cf-4edb-930d-922a2de86f27 2>/dev/null || true",
+            "timeout": 60,
+            "statusMessage": "Auto-commit & deploy..."
           }
         ]
       }

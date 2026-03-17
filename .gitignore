@@ -1,3 +1,6 @@
 .claude/settings.local.json
 timer/.current
 timer/.last
+
+# Local Netlify folder
+.netlify/state.json
