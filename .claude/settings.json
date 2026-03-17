@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"E:/Claude Code/WebMarie\" && git status --porcelain | grep -q . && git add -A && git commit -m \"Auto-commit: $(date +%F_%T)\" || true",
+            "timeout": 30,
+            "statusMessage": "Auto-commit..."
+          }
+        ]
+      }
+    ]
+  }
+}
