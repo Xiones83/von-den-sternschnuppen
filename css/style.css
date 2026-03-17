@@ -1182,6 +1182,11 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { text-align: center; }
   .kosten-card.featured { transform: none; }
+  .construction-banner { padding: 0.65rem 2.5rem 0.65rem 0.75rem; font-size: 0.8rem; justify-content: flex-start; }
+  .section-subtitle { margin-bottom: 2rem; }
+  .timeline-item { gap: 1.25rem; }
+  .modal-body { padding: 1.25rem; }
+  .toast { left: 1rem; right: 1rem; }
 }
 
 @media (max-width: 480px) {
