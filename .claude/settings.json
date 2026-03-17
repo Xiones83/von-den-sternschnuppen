@@ -1,5 +1,40 @@
 {
   "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"E:/Claude Code/WebMarie/timer/timer.sh\" start 2>/dev/null || true",
+            "timeout": 10,
+            "statusMessage": "Timer wird gestartet..."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"E:/Claude Code/WebMarie/timer/timer.sh\" ping 2>/dev/null || true",
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "INPUT=$(cat); if echo \"$INPUT\" | grep -qiE 'tsch|bye|auf wiedersehen|bis dann|bis bald|feierabend|adieu|gute nacht|ciao|mach schluss'; then bash \"E:/Claude Code/WebMarie/timer/timer.sh\" stop 2>/dev/null; fi",
+            "timeout": 10
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "Write|Edit|NotebookEdit",
