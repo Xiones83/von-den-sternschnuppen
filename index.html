@@ -21,6 +21,7 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="#aktuell">Aktuell</a></li>
       <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#journal">Journal</a></li>
       <li><a href="#rasse">Rasse</a></li>
       <li><a href="#ablauf">Ablauf</a></li>
       <li><a href="#kosten">Kosten</a></li>
@@ -96,6 +97,19 @@
     <p class="lightbox-caption" id="lightbox-caption"></p>
   </div>
 </div>
+
+<!-- ============================================================
+     JOURNAL
+     ============================================================ -->
+<section id="journal" class="section" aria-labelledby="journal-title">
+  <div class="container">
+    <h2 class="section-title" id="journal-title">Journal</h2>
+    <p class="section-subtitle">Archiv vergangener Würfe und besonderer Momente aus unserem Zwinger.</p>
+    <div class="journal-grid" id="journal-grid">
+      <div class="journal-empty"><p>Noch keine Journal-Einträge vorhanden.</p></div>
+    </div>
+  </div>
+</section>
 
 <!-- ============================================================
      RASSEINFO
@@ -453,6 +467,26 @@
     </div>
   </div>
 </section>
+
+<!-- ============================================================
+     ARTIKEL-MODAL
+     ============================================================ -->
+<div class="article-modal" id="article-modal" role="dialog" aria-modal="true" aria-label="Artikel">
+  <div class="article-modal-inner">
+    <button class="modal-close" onclick="closeArticleModal()" aria-label="Schließen">✕</button>
+    <div class="modal-slideshow" id="modal-slideshow">
+      <!-- Bilder werden per JS eingefügt -->
+      <button class="modal-slide-nav modal-slide-prev" onclick="slidePrev()" aria-label="Vorheriges Bild">‹</button>
+      <button class="modal-slide-nav modal-slide-next" onclick="slideNext()" aria-label="Nächstes Bild">›</button>
+      <span class="modal-slide-counter" id="modal-slide-counter"></span>
+    </div>
+    <div class="modal-body">
+      <div class="modal-meta" id="modal-meta"></div>
+      <h2 class="modal-title" id="modal-title"></h2>
+      <p class="modal-text" id="modal-text"></p>
+    </div>
+  </div>
+</div>
 
 <!-- ============================================================
      FOOTER

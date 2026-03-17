@@ -4,15 +4,17 @@
     "title": "Willkommen bei von den Sternschnuppen!",
     "date": "2026-03-17",
     "text": "Wir freuen uns, unsere neue Website vorstellen zu dürfen! Hier finden Sie stets aktuelle Informationen zu unseren Würfen, Welpen und der Zucht. Schauen Sie gern regelmäßig vorbei.",
-    "image": "https://placedog.net/800/500?r=5",
-    "inGallery": false
+    "images": ["https://placedog.net/800/500?r=5", "https://placedog.net/800/500?r=6"],
+    "inGallery": false,
+    "inJournal": false
   },
   {
     "id": 2,
     "title": "Aktueller Wurf in Planung",
     "date": "2026-03-17",
     "text": "Wir planen unseren nächsten Wurf und freuen uns schon sehr! Interessierte Käufer können sich gern vormerken lassen. Füllen Sie einfach unser Kontaktformular aus – wir melden uns zeitnah bei Ihnen.",
-    "image": "https://placedog.net/800/500?r=15",
-    "inGallery": false
+    "images": ["https://placedog.net/800/500?r=15", "https://placedog.net/800/500?r=16", "https://placedog.net/800/500?r=17"],
+    "inGallery": false,
+    "inJournal": false
   }
 ]
