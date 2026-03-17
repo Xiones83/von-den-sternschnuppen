@@ -100,6 +100,40 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.6rem); }
 .btn-dark:hover { background: var(--deep-blue); transform: translateY(-2px); }
 
 /* ================================================
+   Under Construction Banner
+   ================================================ */
+.construction-banner {
+  background: linear-gradient(90deg, #1a2e50, #0d1b2a);
+  color: rgba(255,255,255,0.9);
+  text-align: center;
+  padding: 0.65rem 3rem;
+  font-size: 0.875rem;
+  position: relative;
+  z-index: 1001;
+  border-bottom: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.construction-banner strong { color: var(--gold); }
+.construction-banner-close {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.5);
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 0.2rem 0.4rem;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.construction-banner-close:hover { color: var(--white); }
+
+/* ================================================
    Navigation
    ================================================ */
 .nav {

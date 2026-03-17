@@ -10,6 +10,14 @@
 <body>
 
 <!-- ============================================================
+     UNDER CONSTRUCTION BANNER
+     ============================================================ -->
+<div class="construction-banner" id="construction-banner">
+  🚧 <span><strong>Diese Seite befindet sich noch im Aufbau.</strong> Einige Inhalte sind noch Platzhalter – wir arbeiten daran! ✨</span>
+  <button class="construction-banner-close" onclick="dismissBanner()" aria-label="Hinweis schließen">✕</button>
+</div>
+
+<!-- ============================================================
      NAVIGATION
      ============================================================ -->
 <nav class="nav" role="navigation" aria-label="Hauptnavigation">
@@ -555,5 +563,23 @@
 
 <script src="js/app.js"></script>
 <script src="js/chatbot.js"></script>
+<script>
+  // Banner: einmal wegklicken → nie wieder
+  (function() {
+    if (localStorage.getItem('banner_dismissed')) {
+      document.getElementById('construction-banner').style.display = 'none';
+    }
+  })();
+  function dismissBanner() {
+    localStorage.setItem('banner_dismissed', '1');
+    const b = document.getElementById('construction-banner');
+    b.style.transition = 'opacity 0.3s, max-height 0.4s';
+    b.style.opacity = '0';
+    b.style.maxHeight = '0';
+    b.style.padding = '0';
+    b.style.borderWidth = '0';
+    setTimeout(() => b.style.display = 'none', 400);
+  }
+</script>
 </body>
 </html>
