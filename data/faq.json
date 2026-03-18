@@ -2,22 +2,22 @@
   {
     "keywords": ["preis", "kosten", "kostet", "teuer", "wieviel", "wie viel", "€"],
     "question": "Was kostet ein Welpe?",
-    "answer": "Der Preis für einen Welpen wird zeitnah bekanntgegeben. Im Preis enthalten sind Erstimpfung, Entwurmung, EU-Heimtierausweis und ein tierärztliches Gesundheitszeugnis. Kontaktieren Sie uns gern für aktuelle Informationen."
+    "answer": "Der Preis wird ausschließlich im persönlichen Gespräch mitgeteilt und richtet sich nach Farbe, Geschlecht und Erscheinungsbild des Welpen. Nehmen Sie gerne Kontakt mit Marie auf – sie freut sich auf Ihre Anfrage!"
   },
   {
-    "keywords": ["rasse", "hund", "welche hunderasse", "was für", "art hund"],
+    "keywords": ["rasse", "hund", "welche hunderasse", "was für", "art hund", "doodle", "goldendoodle", "aussi"],
     "question": "Welche Rasse züchten Sie?",
-    "answer": "Wir züchten mit großer Leidenschaft und Sachverstand. Aktuelle Informationen zur Rasse teilen wir in Kürze mit. Schauen Sie gern bald wieder vorbei!"
+    "answer": "Wir züchten Aussi-Goldendoodles – eine herzliche Kombination aus Australian Shepherd und Goldendoodle. Vom Wesen sehr lieb, freundlich, aufgeschlossen, kinderlieb und intelligent. Ein echter Familienhund!"
   },
   {
-    "keywords": ["reservierung", "reservieren", "vormerken", "sichern", "vorbestellen"],
+    "keywords": ["reservierung", "reservieren", "vormerken", "sichern", "vorbestellen", "anzahlung"],
     "question": "Wie kann ich einen Welpen reservieren?",
-    "answer": "Füllen Sie unser Kontaktformular aus, dann nehmen wir persönlich Kontakt mit Ihnen auf. Wir führen ein Gespräch, um sicherzustellen, dass Welpe und neue Familie zusammenpassen. Erst danach erfolgt eine Reservierung."
+    "answer": "Füllen Sie unser Kontaktformular aus, dann nehmen wir persönlich Kontakt mit Ihnen auf. Nach einem Gespräch und einem Besuch bei uns (wenn die Welpen ca. 4 Wochen alt sind) erfolgt die Reservierung gegen eine Anzahlung."
   },
   {
-    "keywords": ["abholung", "abholbereit", "wann", "alter", "wochen", "abholen"],
+    "keywords": ["abholung", "abholbereit", "wann", "wochen", "abholen", "alter"],
     "question": "Wann sind die Welpen abholbereit?",
-    "answer": "Unsere Welpen ziehen im Alter von 8 bis 10 Wochen zu ihren neuen Familien. Bis dahin wachsen sie liebevoll bei uns auf und werden bestens auf ihr neues Zuhause vorbereitet."
+    "answer": "Unsere Welpen ziehen mit vollendeter 8. bis 9. Woche zu ihren neuen Familien. Bei der Abholung wird auch das Bürsten des Fells vorgeführt, damit die neuen Hundeeltern es von Anfang an richtig anwenden können."
   },
   {
     "keywords": ["enthalten", "leistungen", "was bekomme", "impfung", "tierarzt", "pass"],
@@ -27,7 +27,7 @@
   {
     "keywords": ["besuchen", "besuch", "anschauen", "kommen", "vorbeikommen", "kennenlernen"],
     "question": "Kann ich die Welpen und den Zwinger besuchen?",
-    "answer": "Ja, wir freuen uns über Besuche! Ein persönliches Kennenlernen ist uns sogar sehr wichtig. Termine vereinbaren wir gerne im Vorfeld. Kontaktieren Sie uns einfach – wir finden zusammen einen passenden Termin."
+    "answer": "Ja, ein persönlicher Besuch ist uns sogar sehr wichtig! Wenn die Welpen ca. 4 Wochen alt sind, laden wir Interessenten zu einem Kennenlernen ein. Kontaktieren Sie uns einfach – wir finden zusammen einen passenden Termin."
   },
   {
     "keywords": ["verfügbar", "frei", "noch welpen", "gibt es noch", "offen"],
@@ -35,14 +35,24 @@
     "answer": "Aktuelle Informationen zu verfügbaren Welpen finden Sie im Bereich 'Aktuell' auf unserer Website. Dort halten wir Sie über geplante und laufende Würfe auf dem Laufenden. Für direkten Kontakt nutzen Sie unser Formular."
   },
   {
-    "keywords": ["lieferung", "transport", "schicken", "versenden", "bringen"],
-    "question": "Liefern Sie Welpen?",
-    "answer": "Wir bevorzugen persönliche Übergaben, da uns das Kennenlernen beider Seiten sehr wichtig ist. In Ausnahmefällen können wir andere Arrangements besprechen. Melden Sie sich einfach bei uns."
+    "keywords": ["erbkrankheit", "gesundheit", "krank", "erblich", "eltern", "elterntiere", "gesund"],
+    "question": "Sind die Elterntiere gesund?",
+    "answer": "Ja, uns ist die Gesundheit unserer Hunde sehr wichtig. Unsere Elterntiere sind von Erbkrankheiten frei. Wir züchten verantwortungsbewusst und achten auf wesensfeste, gesunde Tiere."
   },
   {
-    "keywords": ["anforderungen", "bedingungen", "voraussetzungen", "brauche ich", "was muss"],
+    "keywords": ["deckrüde", "klausi", "decken", "hündin", "rüde"],
+    "question": "Bieten Sie einen Deckrüden an?",
+    "answer": "Ja! Unser Aussi-Goldendoodle-Rüde Klausi steht gesunden Hündinnen als Deckrüde zur Verfügung. Bei Interesse nehmen Sie einfach Kontakt mit Marie auf."
+  },
+  {
+    "keywords": ["pflege", "bürsten", "kämmen", "fell", "haare", "scheren"],
+    "question": "Wie aufwändig ist die Pflege beim Aussi-Goldendoodle?",
+    "answer": "Die Pflege ist durch das nicht haarende Fell etwas aufwändiger als bei anderen Rassen. Regelmäßiges Kämmen und Bürsten ist das A und O. Wir trainieren dies bereits bei den Welpen und zeigen es bei der Abholung vor."
+  },
+  {
+    "keywords": ["anforderungen", "bedingungen", "voraussetzungen", "brauche ich", "was muss", "wohnung", "garten"],
     "question": "Welche Anforderungen gibt es an Käufer?",
-    "answer": "Uns ist vor allem ein liebevolles, verantwortungsbewusstes Zuhause wichtig. Dazu gehören ausreichend Zeit, eine geeignete Wohnsituation und Erfahrung bzw. Bereitschaft zur Einarbeitung. Details finden Sie im Bereich 'Ablauf & Bedingungen'."
+    "answer": "Uns ist vor allem ein liebevolles, verantwortungsbewusstes Zuhause wichtig. Auch eine Wohnung ist in Ordnung, solange dem Hund seine Bedürfnisse gerecht werden. Haus mit Garten ist schön, aber nicht zwingend erforderlich."
   },
   {
     "keywords": ["kontakt", "mail", "email", "telefon", "anrufen", "schreiben", "melden"],
